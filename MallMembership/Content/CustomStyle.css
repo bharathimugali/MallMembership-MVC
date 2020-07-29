@@ -1,0 +1,11 @@
+﻿.disabled {
+    pointer-events: none;
+}
+.inactive{
+    background-color:palevioletred;
+    color:blueviolet;
+}
+.color {
+    background-color: palevioletred;
+    color: blueviolet;
+}

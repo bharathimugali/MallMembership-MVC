@@ -1,0 +1,76 @@
+﻿@model MallMembership.Entities.EmploymentInfo
+@using MallMembership.Entities;
+@{
+    ViewBag.Title = "EmploymentInfoInfo";
+}
+@{
+    Html.RenderPartial("_ProgressBar");
+}
+
+<h2>EmloymentInfo</h2>
+
+
+@using (Html.BeginForm("AddEmploymentInfo", "Employment"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmploymentType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.EmploymentType,
+                  new List<SelectListItem> {
+                               new SelectListItem { Value = "Employed" , Text = "Employed" },
+                               new SelectListItem { Value = "UnEmployed" , Text = "UnEmployed" }
+                               }, new { htmlAttributes = new { @id = "dropdown" } })
+            </div>
+        </div>
+
+
+        <div id="employmentDiv">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+           
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.ApplicantId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplicantId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+
